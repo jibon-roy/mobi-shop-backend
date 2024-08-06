@@ -1,5 +1,5 @@
-import connectDB from "../../config/db/db";
-import usersModel from "../../models/users";
+import connectDB from "../../config/db/db.js";
+import usersModel from "../../models/users.js";
 
 const allUsers = async (req, res) => {
   await connectDB();

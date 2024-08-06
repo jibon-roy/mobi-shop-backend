@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import connectDB from "./src/config/db/db.js";
+import router from "./src/api/v1/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -32,6 +33,8 @@ app.use((err, req, res, next) => {
 
 const startServer = async () => {
   await connectDB();
+
+  app.use("/api/v1", router);
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
