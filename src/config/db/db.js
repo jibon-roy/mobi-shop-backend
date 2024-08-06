@@ -5,7 +5,7 @@ const connectDB = async () => {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName: "MobiShop",
+      dbName: "MobiShop", // Uncomment if you want to explicitly set the database name
     });
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {

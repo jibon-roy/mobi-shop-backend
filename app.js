@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import connectDB from "./src/config/db/db.js";
-import router from "./src/api/v1/index.js";
+import router from "./src/api/v1/index.js"; // Adjust the path as necessary
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,10 +15,8 @@ app.use(
   })
 );
 
-// Routes
-app.get("/status", (req, res) => {
-  res.send("Server is running");
-});
+// Define your routes
+app.use("/api/v1", router); // Mount your API routes here
 
 // Catch-all route for undefined routes
 app.all("*", (req, res) => {
@@ -33,8 +31,6 @@ app.use((err, req, res, next) => {
 
 const startServer = async () => {
   await connectDB();
-
-  app.use("/api/v1", router);
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
