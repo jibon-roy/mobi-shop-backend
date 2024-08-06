@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import connectDB from "./src/config/db/db.js";
-import router from "./src/api/v1/index.js"; // Adjust the path as necessary
+import router from "./src/api/v1/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,7 +16,7 @@ app.use(
 );
 
 // Define your routes
-app.use("/api/v1", router); // Mount your API routes here
+app.use("/api/v1", router);
 
 // Catch-all route for undefined routes
 app.all("*", (req, res) => {
