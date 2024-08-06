@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
+import connectDB from "./src/config/db/db.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,8 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
+// Routes
+app.get("/status", (req, res) => {
   res.send("Server is running");
 });
 
@@ -28,6 +30,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+const startServer = async () => {
+  await connectDB();
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+};
+
+startServer();
