@@ -20,7 +20,7 @@ app.use("/api/v1", router);
 
 // Catch-all route for undefined routes
 app.all("*", (req, res) => {
-  res.status(404).json({ message: "Not Found" });
+  res.status(404).json({ message: "Not Found", path: req.path });
 });
 
 // Error handling middleware

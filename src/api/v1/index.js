@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 
 router.use("/users", allUsers);
-router.post("user/login", loginUser);
+router.post("/user/login", loginUser);
 router.post("/user/google-login", loginWithGooglePopup);
 router.post("/user/register", registerUser);
 

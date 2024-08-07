@@ -7,16 +7,13 @@ const allUsers = async (req, res) => {
   const users = await usersModel.find();
   res.send(users);
 };
-
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Find user by email
     const user = await usersModel.findOne({ email });
 
-    // Check if user exists and password matches
-    if (!user || !user.comparePassword(password)) {
+    if (!user || user.password !== password) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
@@ -32,10 +29,10 @@ const loginUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Server error:", error); // Log the error
     res.status(500).json({ message: "Server error" });
   }
 };
-
 const loginWithGooglePopup = async (req, res) => {
   const { email, uid, name, dateOfBirth, gender } = req.body;
 
@@ -77,7 +74,7 @@ const loginWithGooglePopup = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  const { name, dateOfBirth, gender, email, uid } = req.body;
+  const { name, dateOfBirth, gender, email, uid, password } = req.body;
 
   try {
     // Check if user already exists
@@ -94,7 +91,7 @@ const registerUser = async (req, res) => {
       gender,
       email,
       uid,
-      password: null,
+      password,
     });
 
     await user.save();
