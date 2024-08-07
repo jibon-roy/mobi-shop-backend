@@ -81,20 +81,20 @@ const registerUser = async (req, res) => {
 
   try {
     // Check if user already exists
-    let user = await User.findOne({ email });
+    let user = await usersModel.findOne({ email });
 
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
 
     // Create new user
-    user = new User({
+    user = new usersModel({
       name,
       dateOfBirth,
       gender,
       email,
       uid,
-      password: null, // Password is null for users registering via Firebase
+      password: null,
     });
 
     await user.save();
