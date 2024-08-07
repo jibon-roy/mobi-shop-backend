@@ -1,6 +1,7 @@
 import connectDB from "../../config/db/db.js";
 import usersModel from "../../models/users.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const allUsers = async (req, res) => {
   await connectDB();
@@ -83,7 +84,7 @@ const registerUser = async (req, res) => {
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
-
+    const bcryptPass = bcrypt.hash(password, 7);
     // Create new user
     user = new usersModel({
       name,
@@ -91,7 +92,7 @@ const registerUser = async (req, res) => {
       gender,
       email,
       uid,
-      password,
+      password: bcryptPass,
     });
 
     await user.save();
