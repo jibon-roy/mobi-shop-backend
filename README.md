@@ -2,4 +2,4 @@
 
 ## Links:
 
-    Server status: [https://mobi-shop-backend.vercel.app/status](https://mobi-shop-backend.vercel.app/status)
+    Server status: https://mobi-shop-backend.vercel.app/status
