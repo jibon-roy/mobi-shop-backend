@@ -85,6 +85,7 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
     const bcryptPass = bcrypt.hash(password, 7);
+    console.log(bcryptPass);
     // Create new user
     user = new usersModel({
       name,
@@ -92,7 +93,7 @@ const registerUser = async (req, res) => {
       gender,
       email,
       uid,
-      password: bcryptPass,
+      password: password,
     });
 
     await user.save();
