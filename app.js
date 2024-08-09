@@ -18,7 +18,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
+      "https://mobi-shop-store.web.app",
       "http://localhost:5173",
+      process.env.DEV_URL,
       process.env.PROD_URL,
       process.env.PROD_URL2,
     ],

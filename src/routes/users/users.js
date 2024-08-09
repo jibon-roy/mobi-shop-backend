@@ -2,6 +2,9 @@ import connectDB from "../../config/db/db.js";
 import usersModel from "../../models/users.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const allUsers = async (req, res) => {
   await connectDB();
